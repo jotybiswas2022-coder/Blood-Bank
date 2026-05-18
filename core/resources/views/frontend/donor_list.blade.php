@@ -6,9 +6,9 @@
 <div class="hero-strip">
     <h1>
         <i class="fa-solid fa-heart-pulse"></i>
-        রক্তদাতা তালিকা
+        Blood Donor List
     </h1>
-    <p>জীবন বাঁচান, রক্ত দিন। আমাদের নিবন্ধিত রক্তদাতাদের সাথে যোগাযোগ করুন।</p>
+    <p>Save lives, donate blood. Contact our registered blood donors.</p>
 </div>
 
 <!-- STATS ROW -->
@@ -16,7 +16,7 @@
     <div class="stats-inner">
         <div class="stat-item">
             <div class="stat-number">{{ $sortedDonors->count() }}</div>
-            <div class="stat-label">মোট ডোনার</div>
+            <div class="stat-label">Total Donors</div>
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
             <h3>
                 <i class="fa-solid fa-users me-2"></i>
                 <span id="header-title">@if($bloodGroup) Donor List for Blood Group {{ $bloodGroup }} @else All Donors @endif</span>
-                <span class="donor-count-badge" id="donor-count">Total Donor: {{ $sortedDonors->count() }}</span>
+                <span class="donor-count-badge" id="donor-count">Total Donors: {{ $sortedDonors->count() }}</span>
             </h3>
         </div>
 
@@ -37,13 +37,13 @@
 
                    <!-- Name/Mobile Search -->
                     <input type="text"
-                        placeholder="নাম বা মোবাইল দিয়ে খুঁজুন..."
+                        placeholder="Search by name or mobile..."
                         onkeyup="searchDonors(this.value)"
                         class="search-input">
 
                     <!-- Division Search -->
                     <select onchange="filterDivision(this.value)" class="division-select">
-                        <option value="all">সব বিভাগ</option>
+                        <option value="all">All Divisions</option>
                         <option value="Dhaka">Dhaka</option>
                         <option value="Chattogram">Chattogram</option>
                         <option value="Khulna">Khulna</option>
@@ -60,12 +60,12 @@
             <table class="donor-table">
                 <thead>
                     <tr>
-                        <th>ক্রমিক</th>
-                        <th>নাম</th>
-                        <th>মোবাইল</th>
-                        <th>রক্তের গ্রুপ</th>
-                        <th>বিভাগ</th>
-                        <th>পরবর্তী রক্তদান</th>
+                        <th>Serial</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Blood Group</th>
+                        <th>Division</th>
+                        <th>Next Donation</th>
                     </tr>
                 </thead>
                 <tbody id="donor-tbody">
@@ -108,7 +108,7 @@
                     </tr>
                     @empty
                         <tr id="empty-row">
-                            <td colspan="5"><i class="fa-solid fa-user-slash" style="font-size:28px;display:block;margin-bottom:10px;color:#fca5a5;"></i>কোনো ডোনার পাওয়া যায়নি।</td>
+                            <td colspan="6"><i class="fa-solid fa-user-slash" style="font-size:28px;display:block;margin-bottom:10px;color:#fca5a5;"></i>No donors found.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -119,7 +119,7 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-    <p>© ২০২৫ ব্লাড ব্যাংক &nbsp;|&nbsp; <span><i class="fa-solid fa-heart"></i> রক্তদান জীবনদান</span> &nbsp;|&nbsp; সর্বস্বত্ব সংরক্ষিত</p>
+    <p>© 2025 Blood Bank &nbsp;|&nbsp; <span><i class="fa-solid fa-heart"></i> Donate Blood, Save Lives</span> &nbsp;|&nbsp; All Rights Reserved</p>
 </footer>
 
 <script>
@@ -179,7 +179,7 @@ function applyFilter() {
         }
     });
 
-    document.getElementById('donor-count').textContent = 'Total Donor: ' + visible;
+    document.getElementById('donor-count').textContent = 'Total Donors: ' + visible;
 
     // Show/hide empty state
     let emptyRow = document.getElementById('empty-row');
@@ -188,7 +188,7 @@ function applyFilter() {
             emptyRow = document.createElement('tr');
             emptyRow.id = 'empty-row';
             emptyRow.className = 'empty-row';
-            emptyRow.innerHTML = '<td colspan="6"><i class="fa-solid fa-user-slash" style="font-size:28px;display:block;margin-bottom:10px;color:#fca5a5;"></i>কোনো ডোনার পাওয়া যায়নি।</td>';
+            emptyRow.innerHTML = '<td colspan="6"><i class="fa-solid fa-user-slash" style="font-size:28px;display:block;margin-bottom:10px;color:#fca5a5;"></i>No donors found.</td>';
             document.getElementById('donor-tbody').appendChild(emptyRow);
         }
         emptyRow.style.display = '';
