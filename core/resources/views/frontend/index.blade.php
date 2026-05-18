@@ -8,27 +8,27 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <div class="pulse"></div>
-                    এখনই রক্ত দিন, জীবন বাঁচান
+                    Donate blood now, save lives
                 </div>
                 <h1>
-                    একটি রক্তের ফোঁটা<br>
-                    <span class="highlight">একটি জীবন বাঁচাতে পারে</span>
+                    One drop of blood<br>
+                    <span class="highlight">can save a life</span>
                 </h1>
                 <p>
-                    আমরা রক্তদাতা ও রোগীদের মধ্যে সেতুবন্ধন তৈরি করি। জরুরি মুহূর্তে সঠিক রক্তের গ্রুপ খুঁজে পেতে আমাদের সাথে যুক্ত হোন।
+                    We connect blood donors and patients. Join us to find the right blood group when every minute counts.
                 </p>
                 <div class="hero-buttons">
                     <a href="#blood-groups" class="btn-primary-custom">
-                        <i class="bi bi-search"></i> ডোনার খুঁজুন
+                        <i class="bi bi-search"></i> Find Donors
                     </a>
                     <a href="#contact" class="btn-secondary-custom">
-                        <i class="bi bi-telephone-fill"></i> জরুরি যোগাযোগ
+                        <i class="bi bi-telephone-fill"></i> Emergency Contact
                     </a>
                 </div>
 
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <div class="stat-number">{{ $donorsCount }} জন <span class="stat-label"> নিবন্ধিত ডোনার </span></div>
+                        <div class="stat-number">{{ $donorsCount }} <span class="stat-label"> registered donors </span></div>
                     </div>
                 </div>
             </div>
@@ -48,8 +48,8 @@
                         </defs>
                         <path d="M100 10 C100 10, 20 120, 20 170 C20 215, 55 250, 100 250 C145 250, 180 215, 180 170 C180 120, 100 10, 100 10Z" fill="url(#bloodGrad)"/>
                         <path d="M70 80 C70 80, 45 135, 45 160 C45 180, 60 195, 75 195 C90 195, 95 180, 95 165 C95 140, 70 80, 70 80Z" fill="url(#shineGrad)" opacity="0.3"/>
-                        <text x="100" y="185" text-anchor="middle" fill="white" font-size="40" font-weight="800" font-family="Inter, sans-serif">রক্ত</text>
-                        <text x="100" y="215" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="16" font-weight="600" font-family="Inter, sans-serif">দিন</text>
+                        <text x="100" y="185" text-anchor="middle" fill="white" font-size="40" font-weight="800" font-family="Inter, sans-serif">Blood</text>
+                        <text x="100" y="215" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="16" font-weight="600" font-family="Inter, sans-serif">Give</text>
                     </svg>
                 </div>
             </div>
@@ -58,7 +58,7 @@
 
     <!-- ========== Success Alert (hidden by default) ========== -->
     <div class="alert-success" id="successAlert">
-        <i class="bi bi-check-circle-fill"></i> আপনার বার্তা সফলভাবে পাঠানো হয়েছে!
+        <i class="bi bi-check-circle-fill"></i> Your message was sent successfully!
     </div>
 
     <!-- ========== Blood Groups ========== -->
@@ -66,10 +66,10 @@
         <div class="container">
             <div class="section-header fade-in">
                 <div class="section-subtitle">
-                    <i class="bi bi-droplet-fill"></i> রক্তের গ্রুপ
+                    <i class="bi bi-droplet-fill"></i> Blood Groups
                 </div>
-                <h2 class="section-title">উপলব্ধ রক্তের গ্রুপসমূহ</h2>
-                <p class="section-desc">আপনার প্রয়োজনীয় রক্তের গ্রুপ নির্বাচন করে ডোনারদের তালিকা দেখুন</p>
+                <h2 class="section-title">Available Blood Groups</h2>
+                <p class="section-desc">Select your required blood group to view the donor list</p>
             </div>
 
 @php
@@ -89,9 +89,9 @@ $groups = [
     @foreach($groups as $group => $count)
         <div class="blood-card fade-in">
             <div class="blood-icon"><span class="group-text">{{ $group }}</span></div>
-            <p class="label">ব্লাড গ্রুপ</p>
+            <p class="label">Blood Group</p>
             <a href="{{ url('/donor_list/'.$group) }}" class="view-donors-btn">
-                ডোনার দেখুন <i class="bi bi-arrow-right"></i>
+                View Donors <i class="bi bi-arrow-right"></i>
             </a>
         </div>
     @endforeach
@@ -105,10 +105,10 @@ $groups = [
         <div class="container">
             <div class="section-header fade-in">
                 <div class="section-subtitle">
-                    <i class="bi bi-envelope-fill"></i> যোগাযোগ
+                    <i class="bi bi-envelope-fill"></i> Contact
                 </div>
-                <h2 class="section-title">আমাদের সাথে যোগাযোগ করুন</h2>
-                <p class="section-desc">যেকোনো প্রশ্ন বা জরুরি প্রয়োজনে আমাদের জানান</p>
+                <h2 class="section-title">Get In Touch With Us</h2>
+                <p class="section-desc">Let us know for any questions or emergency needs</p>
             </div>
 
             <div class="contact-grid">
@@ -117,22 +117,22 @@ $groups = [
                     <form id="contactForm" action="{{ url('/contactus') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label>আপনার নাম</label>
-                            <input type="text" name="name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
+                            <label>Your Name</label>
+                            <input type="text" name="name" placeholder="Enter your full name" required>
                         </div>
 
                         <div class="form-group">
-                            <label>আপনার ইমেইল</label>
+                            <label>Your Email</label>
                             <input type="email" name="email" placeholder="example@email.com" required>
                         </div>
 
                         <div class="form-group">
-                            <label>বার্তা</label>
-                            <textarea name="message" rows="5" placeholder="আপনার বার্তা এখানে লিখুন..." required></textarea>
+                            <label>Message</label>
+                            <textarea name="message" rows="5" placeholder="Write your message here..." required></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn" id="contactSubmitBtn">
-                            <i class="bi bi-send-fill"></i> বার্তা পাঠান
+                            <i class="bi bi-send-fill"></i> Send Message
                         </button>
                     </form>
                 </div>
@@ -141,15 +141,15 @@ $groups = [
                 <div class="contact-info fade-in">
                     <div class="emergency-card">
                         <div class="emergency-icon"><i class="fas fa-ambulance"></i></div>
-                        <h4>জরুরি হটলাইন</h4>
-                        <p>২৪ ঘন্টা জরুরি রক্তের জন্য কল করুন</p>
+                        <h4>Emergency Hotline</h4>
+                        <p>Call anytime for emergency blood needs</p>
                         <div class="phone">{{ $account->phone ?? 'N/A' }}</div>
                     </div>
 
                     <div class="contact-info-card">
                         <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
                         <div>
-                            <h5>ইমেইল</h5>
+                            <h5>Email</h5>
                             <p>{{ $account->email ?? 'N/A' }}<br>{{ $account->website ?? 'N/A' }}</p>
                         </div>
                     </div>
@@ -164,13 +164,13 @@ $groups = [
             <div class="footer-content">
                 <div class="footer-brand">
                     <div class="logo-icon"><i class="bi bi-droplet-fill"></i></div>
-                    <span>ব্লাড ব্যাংক</span>
+                    <span>Blood Bank</span>
                 </div>
 
                 <div class="footer-links">
-                    <a href="#">হোম</a>
-                    <a href="#blood-groups">রক্তের গ্রুপ</a>
-                    <a href="#contact">যোগাযোগ</a>
+                    <a href="#">Home</a>
+                    <a href="#blood-groups">Blood Groups</a>
+                    <a href="#contact">Contact</a>
                 </div>
 
                 <div class="footer-social">
@@ -182,7 +182,7 @@ $groups = [
             </div>
 
             <div class="footer-bottom">
-                &copy; ২০২৫ ব্লাড ব্যাংক। সর্বস্বত্ব সংরক্ষিত। ❤️ ভালোবাসায় তৈরি
+                &copy; 2025 Blood Bank. All rights reserved. ❤️ Made with love
             </div>
         </div>
     </footer>
@@ -238,7 +238,7 @@ $groups = [
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert.textContent = "বার্তা পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।";
+                alert.textContent = "Failed to send message, please try again.";
                 alert.classList.add('show');
                 setTimeout(() => alert.classList.remove('show'), 5000);
             });
@@ -261,12 +261,12 @@ $groups = [
             const submitBtn = document.getElementById('contactSubmitBtn');
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="bi bi-send-fill"></i> পাঠানো হচ্ছে...';
+            submitBtn.innerHTML = '<i class="bi bi-send-fill"></i> Sending...';
         });
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
         * {
             margin: 0;
@@ -275,7 +275,7 @@ $groups = [
         }
 
         body {
-            font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: #333;
             background: #f8f9fa;
             overflow-x: hidden;
