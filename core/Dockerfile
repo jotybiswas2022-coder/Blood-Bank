@@ -10,6 +10,8 @@ WORKDIR /var/www/html
 
 COPY core/ .
 
+RUN mkdir -p public storage/logs storage/framework/cache storage/framework/sessions storage/framework/views bootstrap/cache
+
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 
 RUN chown -R www-data:www-data storage bootstrap/cache
