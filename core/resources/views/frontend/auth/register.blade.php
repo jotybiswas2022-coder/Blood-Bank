@@ -112,17 +112,6 @@
                         @error('password')
                         <span class="invalid-feedback d-block" role="alert"><strong>{{ $message }}</strong></span>
                         @enderror
-                        <div class="password-checker" id="password-checker" aria-live="polite">
-                            <div class="checker-dots" id="strength-dots">
-                                <span class="checker-dot"></span>
-                                <span class="checker-dot"></span>
-                                <span class="checker-dot"></span>
-                                <span class="checker-dot"></span>
-                                <span class="checker-dot"></span>
-                                <span class="checker-dot"></span>
-                            </div>
-                            <span class="checker-text" id="strength-text">Use 8+ chars, number, upper & symbol</span>
-                        </div>
                     </div>
 
                     <!-- Confirm Password -->
@@ -134,7 +123,6 @@
                             </svg>
                             <input id="password-confirm" type="password" class="form-control login-input" name="password_confirmation" placeholder="••••••••" required autocomplete="new-password">
                         </div>
-                        <div class="password-match" id="password-match">Passwords do not match yet</div>
                     </div>
 
                     <!-- Actions -->
@@ -554,60 +542,6 @@
             font-weight: 500;
         }
 
-        .password-checker {
-            margin-top: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 2px solid #D4D7DC;
-            border-radius: 14px;
-            padding: 8px 12px;
-            background: #fff;
-        }
-
-        .checker-dots {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            padding: 3px 7px;
-            border-radius: 8px;
-            background: #f2f4f7;
-            transition: background .2s ease;
-        }
-
-        .checker-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: #111;
-            opacity: .22;
-            transition: opacity .2s ease, transform .2s ease;
-        }
-
-        .checker-dot.active {
-            opacity: 1;
-            transform: scale(1.03);
-        }
-
-        .checker-text {
-            font-size: 11.5px;
-            color: #616a74;
-            font-weight: 600;
-            letter-spacing: .2px;
-        }
-
-        .password-match {
-            margin-top: 8px;
-            font-size: 11.5px;
-            font-weight: 700;
-            color: #8a2e2e;
-            min-height: 16px;
-        }
-
-        .password-match.ok {
-            color: #237a3a;
-        }
-
         /* ═══════════════════════════════════════
            SPACING BETWEEN FIELDS
         ═══════════════════════════════════════ */
@@ -838,80 +772,3 @@
         .gap-3 { gap: 12px; }
         .mt-3  { margin-top: 12px; }
     </style>
-<script>
-    (function () {
-        var passwordInput = document.getElementById('password');
-        var confirmInput = document.getElementById('password-confirm');
-        var checker = document.getElementById('password-checker');
-        var dots = document.querySelectorAll('#strength-dots .checker-dot');
-        var strengthText = document.getElementById('strength-text');
-        var matchText = document.getElementById('password-match');
-
-        if (!passwordInput || !confirmInput || !checker || !dots.length || !strengthText || !matchText) {
-            return;
-        }
-
-        function getScore(value) {
-            var score = 0;
-            if (value.length >= 8) score++;
-            if (value.length >= 12) score++;
-            if (/[a-z]/.test(value) && /[A-Z]/.test(value)) score++;
-            if (/\d/.test(value)) score++;
-            if (/[^A-Za-z0-9]/.test(value)) score++;
-            if (value.length >= 16) score++;
-            return Math.min(score, 6);
-        }
-
-        function updateMatch() {
-            var pass = passwordInput.value || '';
-            var confirm = confirmInput.value || '';
-
-            if (!confirm.length) {
-                matchText.classList.remove('ok');
-                matchText.textContent = 'Passwords do not match yet';
-                return;
-            }
-
-            if (pass === confirm) {
-                matchText.classList.add('ok');
-                matchText.textContent = 'Passwords matched';
-            } else {
-                matchText.classList.remove('ok');
-                matchText.textContent = 'Passwords do not match';
-            }
-        }
-
-        function updateStrength() {
-            var value = passwordInput.value || '';
-            var score = getScore(value);
-            var bg = '#f2f4f7';
-            var label = 'Use 8+ chars, number, upper & symbol';
-
-            dots.forEach(function (dot, index) {
-                dot.classList.toggle('active', index < score);
-            });
-
-            if (!value.length) {
-                bg = '#f2f4f7';
-            } else if (score <= 2) {
-                bg = '#ffdedd';
-                label = 'Weak password';
-            } else if (score <= 4) {
-                bg = '#ffecc9';
-                label = 'Medium password';
-            } else {
-                bg = '#d8f7d5';
-                label = 'Strong password';
-            }
-
-            checker.style.borderColor = score >= 5 ? '#6fcf84' : (score >= 3 ? '#f2bf66' : '#dc8e8e');
-            document.getElementById('strength-dots').style.background = bg;
-            strengthText.textContent = label;
-            updateMatch();
-        }
-
-        passwordInput.addEventListener('input', updateStrength);
-        confirmInput.addEventListener('input', updateMatch);
-        updateStrength();
-    })();
-</script>
