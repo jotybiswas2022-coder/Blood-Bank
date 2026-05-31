@@ -18,4 +18,4 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 
 EXPOSE 8000
 
-CMD php -S 0.0.0.0:${PORT:-8000} -t public
+CMD php artisan migrate --force && php -S 0.0.0.0:${PORT:-8000} -t public
